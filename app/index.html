@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Blue-Green Deploy - Versión 1</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: #111827;
+      padding: 2rem 3rem;
+      border-radius: 1rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 0.5rem;
+    }
+    .env {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Despliegue Blue-Green</h1>
+    <p>Versión 1 – Entorno estático</p>
+    <p class="env">
+      (Cuando estemos en el VPS, veremos si estás en <strong>BLUE</strong> o <strong>GREEN</strong>)
+    </p>
+  </div>
+</body>
+</html>

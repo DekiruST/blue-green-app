@@ -1,0 +1,15 @@
+
+services:
+  app_blue:
+    build: .
+    container_name: app_blue
+    ports:
+      - "8081:80"
+    restart: always
+
+  app_green:
+    build: .
+    container_name: app_green
+    ports:
+      - "8082:80"
+    restart: always
