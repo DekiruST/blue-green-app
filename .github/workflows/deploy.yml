@@ -25,8 +25,7 @@ jobs:
             ./ \
             ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/deployer/blue-green-app
 
-           - name: Ejecutar deploy.sh en el servidor
+      - name: Ejecutar deploy.sh en el servidor
         run: |
           ssh -i ~/.ssh/id_ed25519 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
             "cd /home/deployer/blue-green-app && chmod +x deploy.sh && ./deploy.sh ${{ secrets.DEPLOY_COLOR }}"
-
