@@ -27,5 +27,5 @@ jobs:
 
       - name: Ejecutar deploy.sh en el servidor
         run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+          ssh -i ~/.ssh/id_ed25519 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
             "cd /home/deployer/blue-green-app && ./deploy.sh ${{ secrets.DEPLOY_COLOR }}"
