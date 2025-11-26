@@ -1,15 +1,29 @@
-#!/bin/bash
-set -e  # si algo falla, se detiene el script
+set -e  
 
-COLOR=$1  # primer parámetro: blue o green
+APP_DIR="/home/deployer/blue-green-app"
 
-if [ "$COLOR" != "blue" ] && [ "$COLOR" != "green" ]; then
-  echo "Uso: $0 blue|green"
-  exit 1
+#Color recibido por parámetro (opcional)
+COLOR="$1"
+
+#Si no hay parámetro, alternar automáticamente con current_color
+if [ -z "$COLOR" ]; then
+  if [ -f "$APP_DIR/current_color" ]; then
+    CURRENT=$(cat "$APP_DIR/current_color")
+    if [ "$CURRENT" = "blue" ]; then
+      COLOR="green"
+    else
+      COLOR="blue"
+    fi
+  else
+    COLOR="blue"
+  fi
 fi
 
-# Carpeta donde estará el proyecto en el VPS
-APP_DIR="/home/deployer/blue-green-app"
+# 3) Validar color
+if [ "$COLOR" != "blue" ] && [ "$COLOR" != "green" ]; then
+  echo "Uso: $0 [blue|green]"
+  exit 1
+fi
 
 echo ">>> Cambiando a entorno: $COLOR"
 
@@ -28,7 +42,6 @@ sudo nginx -t
 echo ">>> Recargando Nginx..."
 sudo systemctl reload nginx
 
-# Guardamos qué color está activo
 echo "$COLOR" > current_color
 
 echo ">>> Despliegue Blue-Green completado. Color activo: $COLOR"
